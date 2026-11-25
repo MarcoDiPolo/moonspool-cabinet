@@ -7,6 +7,7 @@
   "includePowers": false,
   "resources": [
     "file://.kiro/steering/instrument.md",
-    "file://.kiro/specs/roll-format/requirements.md"
+    "file://.kiro/specs/roll-format/requirements.md",
+    "file://roll.js"
   ]
 }

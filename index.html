@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172420">
+  <meta name="description" content="Punch a paper roll and play a small mechanical melody. Moonspool Cabinet is an offline five-note music box.">
+  <title>Moonspool Cabinet · Paper roll music box</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="roll.js" defer></script>
+  <script src="cabinet.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#instrument">Skip to the instrument</a>
+  <main>
+    <header class="mast">
+      <div class="workshop"><span class="star crest" aria-hidden="true">✦</span> Nocturne Workshop</div>
+      <span class="mast-detail" aria-hidden="true"><i></i> ✧ <i></i></span>
+      <a class="mast-link" href="#guide">Playing notes <span aria-hidden="true">↘</span></a>
+    </header>
+    <section class="intro" aria-labelledby="title">
+      <div>
+        <p class="overline"><span class="rule"></span> A mechanical music box</p>
+        <h1 id="title">Moonspool <em>Cabinet</em></h1>
+        <p class="lead">Punch a melody into paper. Turn the roll and listen.</p>
+      </div>
+      <div class="engraving" aria-hidden="true"><canvas id="moon" width="570" height="290"></canvas></div>
+    </section>
+    <section class="cabinet" id="instrument" aria-label="Music box">
+      <span class="screw tl" aria-hidden="true"></span><span class="screw tr" aria-hidden="true"></span>
+      <span class="screw bl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+      <div class="cabinet-head">
+        <div class="plate"><span aria-hidden="true">✦</span><h2>Punch roll</h2><span aria-hidden="true">✦</span></div>
+        <label class="roll-library" for="library">Load roll
+          <select id="library" disabled><option value="">Custom roll</option></select>
+        </label>
+      </div>
+      <div class="mechanism">
+        <div class="roller roller-left" aria-hidden="true"></div>
+        <div class="paper">
+          <div class="perfs" aria-hidden="true"></div>
+          <div id="roll-grid" aria-label="Punch roll, five pitches and sixteen steps" aria-describedby="grid-help" role="grid" aria-rowcount="6" aria-colcount="17"></div>
+          <div class="perfs" aria-hidden="true"></div>
+        </div>
+        <div class="roller roller-right" aria-hidden="true"></div>
+      </div>
+      <div class="panel">
+        <div class="transport">
+          <button id="play" class="brass" disabled><span aria-hidden="true">▶</span> Play</button>
+          <button id="stop" disabled><span aria-hidden="true">■</span> Stop</button>
+        </div>
+        <div class="tempo">
+          <label for="tempo">Tempo <span><output id="bpm" for="tempo">96</output> BPM</span></label>
+          <input id="tempo" type="range" min="60" max="150" value="96" step="1" disabled>
+        </div>
+        <div class="edit">
+          <button id="undo" disabled><span aria-hidden="true">↶</span> Undo</button>
+          <button id="clear" disabled>Clear</button>
+        </div>
+      </div>
+      <div class="cabinet-foot">
+        <div class="meter"><span class="lamp" id="lamp" aria-hidden="true"></span><span id="meter">At rest</span></div>
+        <div class="position"><span aria-hidden="true">✦</span><span id="step">Step ·· / 16</span></div>
+      </div>
+    </section>
+    <div class="lower">
+      <section id="guide" class="guide" aria-labelledby="guide-title">
+        <h2 id="guide-title">Playing notes</h2>
+        <p id="grid-help">Select a dot to punch a note. Stack holes in a column to play a chord. Use the arrow keys to move, then Space or Enter to punch.</p>
+      </section>
+      <div class="output-controls" aria-label="Save or share">
+        <button id="export" disabled><span aria-hidden="true">↓</span> Export MIDI</button>
+        <button id="share" disabled><span aria-hidden="true">⛓</span> Copy roll link</button>
+      </div>
+    </div>
+    <div class="copy-fallback" id="copy-fallback" hidden><label for="link-text">Roll link</label><input type="url" id="link-text" readonly></div>
+    <p id="notice" role="status" aria-live="polite"></p>
+    <noscript><p>Enable JavaScript to turn the roll.</p></noscript>
+  </main>
+</body>
+</html>

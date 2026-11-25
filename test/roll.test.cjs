@@ -104,3 +104,20 @@ test('MIDI preserves chords, tempo, final rests and repeated notes through an in
     assert.deepEqual(found.sort(order),expected);
   }
 });
+
+test('strict inputs prevent silent truncation and altered share links', () => {
+  const good = Array(16).fill(0);
+  for (const bad of [100.5, '100', NaN, Infinity, 2 ** 32 + 100, 59, 151]) {
+    assert.throws(() => roll.encode(good, bad));
+    assert.throws(() => roll.midi(good, bad));
+  }
+  for (const bad of [-1, 32, 4294967296, 3.5, '2', NaN, Infinity]) {
+    const altered = good.slice(); altered[3] = bad;
+    assert.throws(() => roll.encode(altered, 100));
+    assert.throws(() => roll.toggle(altered, 0, 0));
+    assert.throws(() => roll.midi(altered, 100));
+  }
+  assert.throws(() => roll.encode(Array(16), 100));
+  const token = roll.encode(good, 100);
+  for (const char of ['\u0100','+','/','=']) assert.equal(roll.decode(token.slice(0, -1) + char), null);
+});
