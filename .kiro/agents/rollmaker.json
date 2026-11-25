@@ -1,0 +1,12 @@
+{
+  "name": "rollmaker",
+  "description": "Design and verify the musical mechanism for a paper-roll instrument.",
+  "prompt": "You are the instrument engineer for Moonspool Cabinet. Work from the supplied steering and interface contract. Reply with the requested code or analysis. Do not invoke external tools.",
+  "tools": [],
+  "includeMcpJson": false,
+  "includePowers": false,
+  "resources": [
+    "file://.kiro/steering/instrument.md",
+    "file://.kiro/specs/roll-format/requirements.md"
+  ]
+}
